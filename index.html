@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>📈 CHART SURFER </title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 아이템 버튼 스타일 */
+        #item-controls {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 10;
+        }
+        .btn-item {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #fff;
+            border-radius: 10px;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+        .btn-item:active { transform: scale(0.95); }
+        .btn-item span { font-size: 14px; font-weight: bold; color: #ffeb3b; }
+        
+        @media (max-width: 600px) {
+            #item-controls { top: 80px; right: 10px; }
+            .btn-item { width: 50px; height: 50px; font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="ui-layer">
+    <div id="title-screen">
+        <h1 class="game-title">차트 서퍼<br><span style="font-size:0.5em; color:#fff;">CHART SURFER</span></h1>
+        <p class="game-subtitle">Ride the Volatility!</p>
+        <p class="blink" style="margin-top: 40px; font-size: 20px;">CLICK TO START</p>
+    </div>
+    
+    <!-- 튜토리얼 화면 -->
+    <div id="tutorial-screen" class="hidden">
+        <h2 style="color:#ffeb3b; font-size:30px; margin-bottom:20px; text-align:center;">게임 방법</h2>
+        <div class="tutorial-box" style="text-align: left;">
+            <p>📈 <b>LONG (매수)</b> : 주가가 오를 것 같을 때</p>
+            <p>📉 <b>SHORT (매도)</b> : 주가가 내릴 것 같을 때</p>
+            <p>💰 <b>CLOSE (청산)</b> : 수익을 확정하고 내 돈으로 만들기</p>
+            <div style="margin: 15px 0; border-top: 1px solid #555;"></div>
+            <p>🔥 <b>콤보 & 피버 모드</b></p>
+            <p style="font-size: 16px; color: #ddd;">&nbsp;• 연속으로 수익을 내면 콤보 상승!</p>
+            <p style="font-size: 16px; color: #ff4757;">&nbsp;• <b>2콤보</b> 이상 시 <b>피버 모드</b> (수익 2배)</p>
+            <div style="margin: 15px 0; border-top: 1px solid #555;"></div>
+            <p>🎒 <b>아이템</b> (우측 상단 버튼)</p>
+            <p style="font-size: 16px; color: #ddd;">&nbsp;• <b>SLOW</b>: 차트 속도 감소 / <b>VIEW</b>: 방향 예측</p>
+            <p>⏱️ <b>90초</b> 안에 목표 금액을 달성하세요!</p>
+        </div>
+        <p class="blink" style="margin-top: 30px; text-align:center;">화면을 클릭하여 시작</p>
+    </div>
+
+    <!-- 아이템 버튼 -->
+    <div id="item-controls" class="hidden">
+        <div id="btn-item-slow" class="btn-item">⏱️<br>SLOW<br><span id="count-slow">3</span></div>
+        <div id="btn-item-view" class="btn-item">🔮<br>VIEW<br><span id="count-view">3</span></div>
+    </div>
+
+    <!-- 모바일 컨트롤 버튼 -->
+    <div id="mobile-controls" class="hidden">
+        <div id="btn-bet" class="btn btn-bet">BET<br>10%</div>
+        <div id="btn-sell" class="btn btn-sell">SHORT</div>
+        <div id="btn-close" class="btn btn-close">CLOSE</div>
+        <div id="btn-buy" class="btn btn-buy">LONG</div>
+    </div>
+</div>
+<canvas id="gameCanvas"></canvas>
+
+<script src="constants.js"></script>
+<script src="input.js"></script>
+<script src="sound.js"></script>
+<script src="stock.js"></script>
+<script src="player.js"></script>
+<script src="ui.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
